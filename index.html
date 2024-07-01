@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Constrained Decoding for Secure Code Generation">
+  <meta name="keywords" content="CodeGuard+, Large Language Models, Code Generation, Code LLM, Secure Code Generation, AI Safety.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Constrained Decoding for Secure Code Generation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/table.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+
+  <div class="navbar-brand">
+
+  </div>
+</div>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span class="dnerf">CodeGuard+</span></h1>
+          <h2 class="subtitle">Constrained Decoding for Secure Code Generation </h2>
+          <br>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://keunhong.com">Yanjun Fu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://utkarshsinha.com">Ethan Baker</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://jonbarron.info">Yu Ding</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://sofienbouaziz.com">Yizheng Chen</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Maryland,</span>
+            <span class="author-block"><sup>2</sup>Google DeepMind</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2405.00218"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2405.00218"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. --> 
+              <span class="link-block">
+                <a href="https://github.com/Dynamite321/CodeGuardPlus"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="leaderboard.html" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa fa-trophy"></i>
+                  </span>
+                  <span>Leaderboard</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">TL; DR</h2>
+        <div class="content has-text-justified">
+          <p>
+            There is a disconnection between benchmarks for Code LLMs that evaluate the security and those that assess correctness. Existing benchmarks, like HumanEval and MBPP only evaluate the correctness, while others like Copliot dataset and SecurityEval only target on the security.
+            To bridge this gap, we present <span class="dnerf">CodeGuard+</span>, along with two new metrics, to measure Code LLMs' ability to generate both secure and correct code. Currently, <span class="dnerf">CodeGuard+</span> supports Python and C/C++, with 103 prompts covering 42 CWEs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Code Large Language Models (Code LLMs) have been increasingly used by developers to boost productivity, but they often generate vulnerable code. 
+            Thus, there is an urgent need to ensure that code generated by Code LLMs is correct and secure. 
+            Previous research has primarily focused on generating secure code, overlooking the fact that secure code also needs to be correct. 
+            This oversight can lead to a false sense of security. 
+            Currently, the community lacks a method to measure actual progress in this area, and we need solutions that address both security and correctness of code generation.
+          </p>
+          <p>
+            This paper introduces a new benchmark, <span class="dnerf">CodeGuard+</span>, along with two new metrics, to measure Code LLMs' ability to generate both secure and correct code. 
+            Using our new evaluation methods, we show that the state-of-the-art defense technique, prefix tuning, may not be as strong as previously believed, since it generates secure code but sacrifices functional correctness. 
+            We also demonstrate that different decoding methods significantly affect the security of Code LLMs.
+          </p>
+          <p>
+            Furthermore, we explore a new defense direction: constrained decoding for secure code generation. 
+            We propose new constrained decoding techniques to generate secure code. 
+            Our results reveal that constrained decoding is more effective than prefix tuning to improve the security of Code LLMs, without requiring a specialized training dataset. 
+            Moreover, our evaluations over eight state-of-the-art Code LLMs show that constrained decoding has strong performance to improve the security of Code LLMs, and our technique outperforms GPT-4.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">New Metrics</h2>
+        <div class="content has-text-justified">
+          <p>
+            Previous works calculate the security rate as the percentage of secure programs within unique generated programs that can be parsed and compiled. 
+            This does not measure correctness and forgives generated code that is functionally wrong. 
+            This is disconnected from the standard pass@\(k\) metric widely used in the literature for comparing performance of Code LLMs, 
+            which defines the expected likelihood of generating any correct code output within \(k\) code outputs.
+            Thus, we propose two new evaluation metrics: secure@\(k_{\text{pass}}\) and secure-pass@\(k\). 
+            When \(k = 1\), secure@\(1_{\text{pass}}\) measures the likelihood of any generated correct code being secure;
+            secure-pass@1 measures the expected likelihood of generating both secure and semantically correct code given a single generation.
+          </p>
+          <img src="./static/images/bar_plot_beam_sampling.png">
+          <p>
+            In the above figure, we compare CodeGen + Prefix-tuning model, trained with the SOTA defense SVEN, against the baseline CodeGen model. 
+            Our metric secure-pass@1 is more realistic than SVEN Security Rate. 
+            Since we evaluate both security and correctness of generated code, while SVEN Security Rate does not evaluate correctness. 
+            SVEN Security Rate severely overestimates how secure a model really is. 
+            The secure-pass@1 of CodeGen + Prefix-tuning is only 2.53% better than CodeGen with Beam Sampling.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Constrained Decoding</h2>
+        <div class="content has-text-justified">
+          <p>
+            We explore a new defense direction of constrained decoding for secure code generation. 
+            Given a set of constraints, constrained decoding needs to generate code that satisfies all the constraints.
+            In our paper, we specify security constraints for code generated by prompts in <span class="dnerf">CodeGuard+</span>.
+            To specify the security constraints, we use knowledge about common secure coding practices and the corresponding CWE type that might be triggered by the prompt. 
+            For example, to avoid out-of-bound write, we need the generated code to do the array index bound check; to process untrusted user input, the generated code should perform input validation.
+          </p>
+          <img src="./static/images/bar_plot_models.png">
+          <p>
+            In the above figure, we use <span class="dnerf">CodeGuard+</span> to evaluate our constrained decoding technique on different Code LLMs. 
+            Our constrained decoding technique can improve secure-pass@1 of all six open-source Code LLMs of sizes ranging from 2.7B to 34B. 
+            Every model with constrained decoding shows better secure-pass@1 than GPT-4 with Nucleus Sampling.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Submitting Custom Models</h2>
+        <div class="content has-text-justified">
+          <p>
+            TODO.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{fu2024constrained,
+  title={Constrained Decoding for Secure Code Generation},
+  author={Yanjun Fu and Ethan Baker and Yu Ding and Yizheng Chen},
+  journal={arXiv preprint arXiv:2405.00218},
+  year={2024}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/pdf/2405.00218">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Dynamite321" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Please reach out to <a href="mailto:yanjunfu@umd.edu"> Yanjun Fu </a> for questions or feedback.
+          </p>
+          <p>
+            Code for this website was based on <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://livecodebench.github.io/leaderboard.html"> LiveCodeBench</a>.
+          </p>
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
