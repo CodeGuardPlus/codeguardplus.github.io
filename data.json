@@ -1,50 +1,66 @@
 [
     {
-        "Rank": 1,
         "Model": "GPT-4-1106-preview",
+        "pass@1": 70.13,
         "secure@1pass":57.97,
-        "secure-pass@1":47.45
+        "secure-pass@1":47.45,
+        "link": "https://openai.com/index/gpt-4/",
+        "open": false
     },
     {
-        "Rank": 2,
         "Model": "Llama3-8B",
+        "pass@1": 74.37,
         "secure@1pass":57.88,
-        "secure-pass@1":46.54
+        "secure-pass@1":46.54,
+        "link": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
+        "open": true
     },
     {
-        "Rank": 3,
         "Model": "DeepseekCoder-33B",
+        "pass@1": 78.77,
         "secure@1pass":56.09,
-        "secure-pass@1":46.54
+        "secure-pass@1":46.54,
+        "link": "https://huggingface.co/deepseek-ai/deepseek-coder-33b-base",
+        "open": true
     },
     {
-        "Rank": 4,
         "Model": "CodeLlama-34B",
+        "pass@1": 75.47,
         "secure@1pass":53.51,
-        "secure-pass@1":44.53
+        "secure-pass@1":44.53,
+        "link": "https://huggingface.co/codellama/CodeLlama-34b-hf",
+        "open": true
     },
     {
-        "Rank": 5,
         "Model": "CodeGemma-7B",
+        "pass@1": 73.93,
         "secure@1pass":54.34,
-        "secure-pass@1":43.64
+        "secure-pass@1":43.64,
+        "link": "https://huggingface.co/google/codegemma-7b",
+        "open": true
     },
     {
-        "Rank": 6,
         "Model": "StarCoder2-3B",
+        "pass@1": 70.80,
         "secure@1pass":52.13,
-        "secure-pass@1":38.88
+        "secure-pass@1":38.88,
+        "link": "https://huggingface.co/bigcode/starcoder2-3b",
+        "open": true
     },
     {
-        "Rank": 7,
         "Model": "SVEN-CodeGen-2.7B",
+        "pass@1": 42.95,
         "secure@1pass":51.80,
-        "secure-pass@1":29.14
+        "secure-pass@1":29.14,
+        "link": "https://github.com/eth-sri/sven",
+        "open": true
     },
     {
-        "Rank": 8,
         "Model": "CodeGen-2.7B",
+        "pass@1": 49.89,
         "secure@1pass":40.86,
-        "secure-pass@1":26.07
+        "secure-pass@1":26.07,
+        "link": "https://huggingface.co/Salesforce/codegen-2B-multi",
+        "open": true
     }
 ]
