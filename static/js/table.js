@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (a[key] !== b[key]) {
                             return order === 'asc' ? a[key] - b[key] : b[key] - a[key];
                         } else {
-                            if (a['secure@1pass'] !== b['secure@1pass']) {
-                                return order === 'asc' ? a['secure@1pass'] - b['secure@1pass'] : b['secure@1pass'] - a['secure@1pass'];
+                            if (a['pass@1'] !== b['pass@1']) {
+                                return order === 'asc' ? a['pass@1'] - b['pass@1'] : b['pass@1'] - a['pass@1'];
                             }
                             else {
-                                return order === 'asc' ? a['pass@1'] - b['pass@1'] : b['pass@1'] - a['pass@1'];
+                                return order === 'asc' ? a['secure@1pass'] - b['secure@1pass'] : b['secure@1pass'] - a['secure@1pass'];
                             }
                         }
                     } else if (key === 'secure@1pass') {
